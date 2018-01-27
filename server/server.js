@@ -9,6 +9,7 @@ const path = require('path');
 const knexConfig = require("./knexfile");
 const knexLogger = require('knex-logger');
 const knex = require("knex")(knexConfig[ENV]);
+const dbHelper = require("./lib/dbHelper")(knex);
 app.use(knexLogger(knex));
 
 const bodyParser = require("body-parser");
