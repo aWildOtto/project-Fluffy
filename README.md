@@ -16,3 +16,16 @@
 7) after building the project you can run the server by running ```npm start``` in the server folder
 
 8) Go to localhost:8080 to see the production version
+
+
+
+Main feature:
+
+1) Search cats for adoption
+  - search by cat breed, age, gender
+2) social interaction between cat owners
+  - post cat pictures
+  - owner real-time chat 
+  - cat events organizer
+3) cat e-comerce 
+  
