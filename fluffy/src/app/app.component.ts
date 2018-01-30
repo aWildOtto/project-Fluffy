@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  users: any[];
+  constructor(db: AngularFireDatabase){
+    db.list('/users')
+      .valueChanges()
+      .subscribe(users => {
+        this.users = users;
+        console.log(this.users);
+      });
+  }
 }
