@@ -12,6 +12,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { UserService } from '../services/user.service';
 import { environment } from '../environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+import { SignupComponent } from './signup/signup.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     NavBarComponent,
     LoginComponent,
-    FrontPageComponent
+    FrontPageComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
