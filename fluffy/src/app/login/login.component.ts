@@ -8,7 +8,7 @@ import { UserService } from "../../services/user.service";
 })
 export class LoginComponent implements OnInit {
   
-  username:string;
+  email:string;
   passowrd:string;
   
 
@@ -18,6 +18,9 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService.authentificate(this.username, this.passowrd);
+    this.userService.login(this.email, this.passowrd);
+  }
+  loginWithGoogle() {
+    this.userService.loginWithGoogle();
   }
 }

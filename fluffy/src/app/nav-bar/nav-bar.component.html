@@ -1,20 +1,31 @@
 <!-- A grey horizontal navbar that becomes vertical on small screens -->
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-between">
+<nav class="navbar navbar-expand-sm bg-dark navbar-inverse navbar-dark fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="/">cat</a>
+    <a class="navbar-brand" [routerLink]="['/']">cat</a>
     <!-- Links -->
     <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav ml-auto">
+      <ul *ngIf="!loggedIn; else logoutBlock" class="navbar-nav ml-auto navbar-right">
         <li class="nav-item">
-          <a class="nav-link" href="/login">Log In</a>
+          <a class="nav-link" [routerLink]="['/login']">Log In</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/signup">Sign Up</a>
+          <a class="nav-link" [routerLink]="['/signup']">Sign Up</a>
         </li>
       </ul>   
+      <ng-template #logoutBlock>
+        <ul class="navbar-nav ml-auto navbar-right">
+          <li class="nav-item">
+            <a [routerLink]="['/']" class="nav-link">{{userEmail}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/']" (click)="logout()">Log Out</a>
+          </li>
+        </ul>
+      </ng-template>
     </div>
+    
   </div>
 </nav>
