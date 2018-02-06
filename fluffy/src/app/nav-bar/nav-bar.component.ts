@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
 import { NgIf } from '@angular/common';
 import { UserService } from '../../services/user.service';
+import { Observable } from 'rxjs/Observable';
+import { User } from "../../model/userModel";
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,24 +13,47 @@ import { UserService } from '../../services/user.service';
 })
 export class NavBarComponent implements OnInit {
 
-  loggedIn: boolean;
-  userEmail: string;
-  constructor(public af:AngularFireAuth, private userService: UserService) { }
+  user: any;
+  userObservable: Observable<User>;
+  userData: User = {
+    username: "visitor",
+    avatarURL: "../../assets/default-avatar.png",
+    bio: "none"
+  };
+  userRegistered: boolean = false;
 
+  constructor(private userService: UserService, private router: Router) {
+  }
+  
   ngOnInit() {
-    this.af.authState.subscribe((authObj)=>{
+    this.userService.checkAuthState().subscribe((authObj)=>{
       console.log(authObj);
-      if(authObj){
-        this.userEmail = authObj.email;
-        this.loggedIn = true;
-      } else {
-        this.userEmail = null;
-        this.loggedIn = false;
+      this.user = authObj;
+
+      if(this.user){
+        this.userObservable = this.userService.getUserByID(this.user.uid).valueChanges();
+        this.userObservable.subscribe(
+          userData => {
+            console.log(userData);
+            if (userData) {
+              this.userRegistered = true;
+              this.userData = userData;
+            }
+          });
       }
     });
   }
+
   logout() {
     this.userService.logout();
+  }
+  userButton() {
+    if(this.user && this.userRegistered){
+      this.router.navigate(['/profile/'+this.userData.username]);
+    } else {
+      this.router.navigate(['/register']);
+    }
+    console.log('hi');
   }
 
 }

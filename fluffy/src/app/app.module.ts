@@ -15,6 +15,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { UserService } from '../services/user.service';
 import { environment } from '../environments/environment';
 import { SignupComponent } from './signup/signup.component';
+import { FooterComponent } from './footer/footer.component';
+import { AddUserInfoComponent } from './add-user-info/add-user-info.component';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 
 
 @NgModule({
@@ -23,7 +26,10 @@ import { SignupComponent } from './signup/signup.component';
     NavBarComponent,
     LoginComponent,
     FrontPageComponent,
-    SignupComponent
+    SignupComponent,
+    FooterComponent,
+    AddUserInfoComponent,
+    ProfilePageComponent
   ],
   imports: [
     BrowserModule,

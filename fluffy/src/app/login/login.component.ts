@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from "../../services/user.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,15 +13,21 @@ export class LoginComponent implements OnInit {
   passowrd:string;
   
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
+    // this.router.navigate(['/']);
   }
 
   onSubmit() {
     this.userService.login(this.email, this.passowrd);
   }
   loginWithGoogle() {
-    this.userService.loginWithGoogle();
+    this.userService.loginWithGoogle().then(result => {
+      // console.log(result);
+      if(result.user){
+        this.router.navigate(['/']);
+      }
+    });
   }
 }

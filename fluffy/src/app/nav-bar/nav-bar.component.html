@@ -7,7 +7,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul *ngIf="!loggedIn; else logoutBlock" class="navbar-nav ml-auto navbar-right">
+      <ul *ngIf="!user; else logoutBlock" class="navbar-nav ml-auto navbar-right">
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/login']">Log In</a>
         </li>
@@ -17,8 +17,11 @@
       </ul>   
       <ng-template #logoutBlock>
         <ul class="navbar-nav ml-auto navbar-right">
-          <li class="nav-item">
-            <a [routerLink]="['/']" class="nav-link">{{userEmail}}</a>
+          <li  class="nav-item">
+            <a id="avatar-btn" (click)="userButton()" class="nav-link">
+              <img class="nav-avatar" width="25" height="25" src="{{userData.avatarURL}}" alt="">
+              {{userData.username}}
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/']" (click)="logout()">Log Out</a>
