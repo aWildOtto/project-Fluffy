@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   
   email:string;
-  passowrd:string;
+  password:string;
   
 
   constructor(private userService: UserService, private router: Router) { }
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService.login(this.email, this.passowrd);
+    this.userService.login(this.email, this.password);
   }
   loginWithGoogle() {
     this.userService.loginWithGoogle().then(result => {
