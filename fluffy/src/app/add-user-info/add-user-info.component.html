@@ -1,6 +1,6 @@
-<form >
+<form class="form-control" (ngSubmit)="registerUser()">
   <div class="text-center">
-    <h2>
+    <h2 class="h3 mb-3 font-weight-normal">
       Please enter more information about you
     </h2>
   </div>
@@ -9,19 +9,19 @@
       <span class="input-group-text">Upload your avatar</span>
     </div>
     <div class="custom-file">
-      <input type="file" class="custom-file-input" id="user-avatar" accept=".png, .jpg, .jpeg" required>
-      <label class="custom-file-label" for="user-avatar">Choose file. Only accept: .png, .jpg, .jpeg</label>
+      <input type="file" (change)="fileChange($event)" class="custom-file-input" id="user-avatar" accept="image/png, image/jpeg, image/gif" required>
+      <label class="custom-file-label .text-nowrap" for="user-avatar">{{avatarFile?.name}}</label>
     </div>
   </div>
 
   <div class="form-group">
     <label for="username">Username:</label>
-    <input type="text" class="form-control" name="username" >
+    <input [(ngModel)]="username" type="text" class="form-control" name="username" >
   </div>
 
   <div class="form-group">
     <label for="bio">Your short intro:</label>
-    <input class="form-control" type="text" id="bio">
+    <input [(ngModel)]="bio" class="form-control" type="text" name="bio" >
   </div>
 
   <button class="btn btn-primary">Update</button>

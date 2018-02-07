@@ -10,8 +10,10 @@ import { FlashMessagesService } from 'angular2-flash-messages/module/flash-messa
 })
 export class LoginComponent implements OnInit {
   
-  email:string;
-  password:string;
+  loginEmail:string;
+  loginPassword:string;
+  signupEmail:string;
+  signupPassword:string;
   
 
   constructor(
@@ -21,17 +23,22 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.userService.authObj) {
-      if (this.userService.userRegistered) {
-        this.router.navigate(['/']);
-      } else {
-        this.router.navigate(['/register']);
+    this.userService.checkAuthState().subscribe(user => {
+      if (user) {
+        this.userService.userObservable.subscribe(userData => {
+          if(userData){
+            this.router.navigate(['/']);
+          } else{
+            this.router.navigate(['/register']);
+          }
+
+        })
       }
-    }
+    });
   }
 
-  onSubmit() {
-    this.userService.login(this.email, this.password)
+  onLoginSubmit() {
+    this.userService.login(this.loginEmail, this.loginPassword)
       .then(result => {
         console.log(result);
         if (result.uid) {
@@ -47,6 +54,25 @@ export class LoginComponent implements OnInit {
         this.flashMessage.show(error.message, { cssClass: 'alert-danger', timeOut: 5000 });
       });;
   }
+
+  onSignupSubmit() {
+    this.userService.signup(this.signupEmail, this.signupPassword)
+      .then(result => {
+        console.log(result);
+        if (result.uid) {
+          if (this.userService.userRegistered) {
+            this.router.navigate(['/']);
+          } else {
+            this.router.navigate(['/register']);
+          }
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        this.flashMessage.show(error.message, { cssClass: 'alert-danger', timeOut: 5000 });
+      });;
+  }
+
   loginWithGoogle() {
     this.userService.loginWithGoogle().then(result => {
       console.log(result);

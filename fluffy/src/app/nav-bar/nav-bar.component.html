@@ -1,5 +1,5 @@
 <!-- A grey horizontal navbar that becomes vertical on small screens -->
-<nav class="navbar navbar-expand-sm bg-dark navbar-inverse navbar-dark fixed-top">
+<nav class="navbar navbar-expand-sm bg-dark navbar-inverse navbar-dark">
   <div class="container">
     <a class="navbar-brand" [routerLink]="['/']">cat</a>
     <!-- Links -->
@@ -9,17 +9,14 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul *ngIf="!userService.authObj; else logoutBlock" class="navbar-nav ml-auto navbar-right">
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/login']">Log In</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/signup']">Sign Up</a>
+          <a class="nav-link" [routerLink]="['/login']">Login/Signup</a>
         </li>
       </ul>   
       <ng-template #logoutBlock>
         <ul class="navbar-nav ml-auto navbar-right">
           <li  class="nav-item">
             <a id="avatar-btn" (click)="userButton()" class="nav-link">
-              <img class="nav-avatar" width="25" height="25" src="{{userService.userData.avatarURL}}" alt="">
+              <img class="nav-avatar mr-1" width="20" height="20" src="{{userService.userData.avatarURL}}" alt="">
               {{userService.userData.username}}
             </a>
           </li>

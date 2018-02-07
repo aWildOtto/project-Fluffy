@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireStorage } from 'angularfire2/storage';
 
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
@@ -28,7 +29,13 @@ export class UserService {
     bio: "none"
   };
   error: string;
-  constructor(private db: AngularFirestore, private http: HttpClient, public afAuth: AngularFireAuth) {
+  constructor(
+    private db: AngularFirestore, 
+    private http: HttpClient, 
+    private afAuth: AngularFireAuth,
+    private af: AngularFireModule,
+    private storage: AngularFireStorage
+  ) {
     console.log('Users service injected');
     this.users = db.collection('/users');
     this.checkAuthState().subscribe((authObj) => {
@@ -76,5 +83,19 @@ export class UserService {
 
   checkAuthState(): Observable<any>{
     return this.afAuth.authState;
+  }
+
+  createUserInDB(avatarFile: File, username: string, bio: string): Promise<any> {
+    console.log('creating user doc');
+    return this.storage.upload(avatarFile.name, avatarFile).then(result =>{
+      console.log(result);
+      this.users.doc(this.authObj.uid).set({
+        avatarURL: result.downloadURL,
+        username,
+        bio
+      });
+    }).catch(error => {
+      console.log(error);
+    });
   }
 }
