@@ -41,48 +41,29 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.loginEmail, this.loginPassword)
       .then(result => {
         console.log(result);
-        if (result.uid) {
-          if (this.userService.userRegistered) {
-            this.router.navigate(['/']);
-          } else {
-            this.router.navigate(['/register']);
-          }
-        }
+        this.flashMessage.show("You are logged in", { cssClass: 'alert-success', timeOut: 5000 });
       })
       .catch(error => {
         console.log(error);
         this.flashMessage.show(error.message, { cssClass: 'alert-danger', timeOut: 5000 });
-      });;
+      });
   }
 
   onSignupSubmit() {
     this.userService.signup(this.signupEmail, this.signupPassword)
       .then(result => {
-        console.log(result);
-        if (result.uid) {
-          if (this.userService.userRegistered) {
-            this.router.navigate(['/']);
-          } else {
-            this.router.navigate(['/register']);
-          }
-        }
+        this.flashMessage.show("You've signed up an account and logged in", { cssClass: 'alert-success', timeOut: 5000 });
       })
       .catch(error => {
         console.log(error);
         this.flashMessage.show(error.message, { cssClass: 'alert-danger', timeOut: 5000 });
       });;
-  }
-
-  loginWithGoogle() {
-    this.userService.loginWithGoogle().then(result => {
-      console.log(result);
-      if (result.uid) {
-        if (this.userService.userRegistered) {
-          this.router.navigate(['/']);
-        } else {
-          this.router.navigate(['/register']);
-        }
-      }
+    }
+    
+    loginWithGoogle() {
+      this.userService.loginWithGoogle().then(result => {
+        console.log(result);
+        this.flashMessage.show("You are logged in via Google", { cssClass: 'alert-success', timeOut: 5000 });
     })
       .catch(error => {
         console.log(error);
