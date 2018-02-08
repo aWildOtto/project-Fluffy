@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   loginPassword:string;
   signupEmail:string;
   signupPassword:string;
-  
+  showLoginForm:boolean = true;
 
   constructor(
     private userService: UserService, 
@@ -59,12 +59,18 @@ export class LoginComponent implements OnInit {
         this.flashMessage.show(error.message, { cssClass: 'alert-danger', timeOut: 5000 });
       });;
     }
-    
-    loginWithGoogle() {
-      this.userService.loginWithGoogle().then(result => {
+  switchToLogin() {
+    this.showLoginForm = true;
+  }
+  switchToSignup() {
+    this.showLoginForm = false;
+  }
+  loginWithGoogle() {
+    this.userService.loginWithGoogle()
+      .then(result => {
         console.log(result);
         this.flashMessage.show("You are logged in via Google", { cssClass: 'alert-success', timeOut: 5000 });
-    })
+      })
       .catch(error => {
         console.log(error);
         this.flashMessage.show(error.message, { cssClass: 'alert-danger', timeOut: 5000 });

@@ -1,40 +1,50 @@
 <div class="container">
   <div class="row">
+    <div class="col-md-6"></div>
     <div class="col-md-6">
-      <h1>Log In</h1>
-      <form class="form-control" (ngSubmit)="onLoginSubmit()">
-        
-        <div class="form-group">
-          <label for="loginEmail">Email:</label>
-          <input type="text" [(ngModel)]="loginEmail" class="form-control" name="loginEmail" required>
+      <div class="card card-form">
+        <div class="card-body">
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-secondary active" (click)="switchToLogin()">
+              <input type="radio" name="options" id="option1" autocomplete="off" checked> Log In
+            </label>
+            <label class="btn btn-secondary" (click)="switchToSignup()">
+              <input type="radio" name="options" id="option2" autocomplete="off"> Sign Up
+            </label>
+          </div>
+         
+          <!-- login form -->
+          <form *ngIf="showLoginForm; else signupForm" class="pt-3" (ngSubmit)="onLoginSubmit()">
+            <div class="form-group">
+              <input type="text" [(ngModel)]="loginEmail" class="form-control" name="loginEmail" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+              <input type="password" [(ngModel)]="loginPassword" class="form-control" name="loginPassword" placeholder="password" autocomplete="false" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Log In</button>
+          </form>
+          
+          <!-- signup form -->
+          <ng-template #signupForm>
+            <form class="pt-3" (ngSubmit)="onSignupSubmit()">
+              <div class="form-group">
+                <input type="text" [(ngModel)]="signupEmail" class="form-control" name="signupEmail" placeholder="Email" required>
+              </div>
+              <div class="form-group">
+                <input type="password" [(ngModel)]="signupPassword" class="form-control" name="signupPassword" required placeholder="Password"
+                  autocomplete="false">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" name="signupConfirmPassword" required placeholder="Confirm your password"
+                  autocomplete="false">
+              </div>
+              <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+          </ng-template>
+
         </div>
-        
-        <div class="form-group">
-          <label for="loginPassword">Password:</label>
-          <input type="password" [(ngModel)]="loginPassword" class="form-control" name="loginPassword" required>
-        </div>
-      
-        <button type="submit" class="btn btn-primary">Log In</button>
-      </form>
-    </div>
-    <div class="col-md-6">
-      <h1>Sign Up</h1>
-      <form class="form-control" (ngSubmit)="onSignupSubmit()">
-        
-        <div class="form-group">
-          <label for="signupEmail">Email:</label>
-          <input type="text" [(ngModel)]="signupEmail" class="form-control" name="signupEmail" required >
-        </div>
-        
-        <div class="form-group">
-          <label for="signupPassword">Password:</label>
-          <input type="password" [(ngModel)]="signupPassword" class="form-control" name="signupPassword" required autocomplete="false">
-        </div>
-        
-        <button type="submit" class="btn btn-primary">Sign Up</button>
-        
-      </form>
+      </div>
+      <button class="btn btn-secondary" (click)="loginWithGoogle()">log in with google</button>
     </div>
   </div>
 </div>
-<button class="btn btn-secondary" (click)="loginWithGoogle()">log in with google</button>
