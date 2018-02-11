@@ -1,7 +1,7 @@
 <!-- A grey horizontal navbar that becomes vertical on small screens -->
 <nav class="navbar navbar-expand-sm bg-dark navbar-inverse navbar-dark">
   <div class="container">
-    <a class="navbar-brand" [routerLink]="['/']">cat</a>
+    <a class="navbar-brand" routerLink="/">cat</a>
     <!-- Links -->
     <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
       <span class="navbar-toggler-icon"></span>
@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul *ngIf="!userService.authObj; else logoutBlock" class="navbar-nav ml-auto navbar-right">
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/login']">Login/Signup</a>
+          <a class="nav-link" routerLink="/login">Login/Signup</a>
         </li>
       </ul>   
       <ng-template #logoutBlock>

@@ -6,18 +6,37 @@
         <img src="{{user.avatarURL}}" width="50px" height="50ox">
       </div>
       <div class="row">
-        {{ user.username}}
+        {{ user.username }}
+      </div>
+      <div class="row">
+        Bio: {{ user.bio }}
       </div>
     </div>
   </div>
-  <div class="d-block d-sm-none row bg-primary">
-    mobile cat list
-  </div>
-  <div class="row">
-    <div class="col-sm-4 d-none d-sm-block bd-sidebar bg-primary">
-      desktop cat list
+  <div id="mobile-cat-list" class="d-sm-none row flex-row flex-nowrap bg-primary">
+    <div  *ngIf="showAddButton" class="col">
+      <a >
+        <img src="../../assets/add-button.png" alt="" width="50px" height="50px">
+      </a>
     </div>
-    <div class="col-sm-8 pl-md-5 bg-success">
+    <cat-card></cat-card>
+    <cat-card></cat-card>
+    <cat-card></cat-card>
+    <cat-card></cat-card>
+    <cat-card></cat-card>
+  </div>
+  <div class="row h-100">
+    <div id="desktop-cat-list" class="col-sm-3 d-none d-sm-block bd-sidebar bg-primary">
+      <div  *ngIf="showAddButton" class="col">
+        <a >
+          <img src="../../assets/add-button.png" alt="" width="50px" height="50px">
+        </a>
+      </div>
+      <cat-card></cat-card>
+      <cat-card></cat-card>
+      <cat-card></cat-card>
+    </div>
+    <div class="col-sm-9 pl-md-5 bg-success">
       cat detail
     </div>
   </div>

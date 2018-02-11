@@ -50,6 +50,11 @@ export class UserService {
               this.userData = userData;
             } else{
               this.userRegistered = false;
+              this.userData = {
+                username: "visitor",
+                avatarURL: "../../assets/default-avatar.png",
+                bio: "none"
+              }
             }
           });
       }
@@ -86,6 +91,7 @@ export class UserService {
   createUserInDB(avatarFile: File, username: string, bio: string): Promise<any> {
     console.log('creating user doc');
     return this.storage.upload(avatarFile.name, avatarFile).then(result =>{
+      // TODO: have to ensure unique username
       this.users.doc(this.authObj.uid).set({
         avatarURL: result.downloadURL,
         username,

@@ -21,6 +21,8 @@ import { environment } from '../environments/environment';
 import { FooterComponent } from './footer/footer.component';
 import { AddUserInfoComponent } from './add-user-info/add-user-info.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { CatCardComponent } from './cat-card/cat-card.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
     FrontPageComponent,
     FooterComponent,
     AddUserInfoComponent,
-    ProfilePageComponent
+    ProfilePageComponent,
+    CatCardComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
