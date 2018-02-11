@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { User } from '../model/userModel';
+import { UserData } from '../model/userModel';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,11 +19,11 @@ const httpOptions = {
 @Injectable()
 export class UserService {
 
-  users: AngularFirestoreCollection<User>;
+  users: AngularFirestoreCollection<UserData>;
   authObj: any;
-  userObservable: Observable<User>;
+  userObservable: Observable<UserData>;
   userRegistered: boolean = false;
-  userData: User = {
+  userData: UserData = {
     username: "visitor",
     avatarURL: "../../assets/default-avatar.png",
     bio: "none"
@@ -37,16 +37,14 @@ export class UserService {
     private storage: AngularFireStorage
   ) {
     console.log('Users service injected');
-    this.users = db.collection('/users');
+    this.users = db.collection('users');
     this.checkAuthState().subscribe((authObj) => {
-      console.log(authObj);
       this.authObj = authObj;
 
       if (this.authObj) {
         this.userObservable = this.getUserByID(this.authObj.uid).valueChanges();
         this.userObservable.subscribe(
           userData => {
-            console.log(userData);
             if (userData) {
               this.userRegistered = true;
               this.userData = userData;
@@ -77,7 +75,7 @@ export class UserService {
     this.afAuth.auth.signOut();
   }
 
-  getUserByID(userID): AngularFirestoreDocument<User>{
+  getUserByID(userID): AngularFirestoreDocument<UserData>{
     return this.users.doc(userID);
   }
 
@@ -88,7 +86,6 @@ export class UserService {
   createUserInDB(avatarFile: File, username: string, bio: string): Promise<any> {
     console.log('creating user doc');
     return this.storage.upload(avatarFile.name, avatarFile).then(result =>{
-      console.log(result);
       this.users.doc(this.authObj.uid).set({
         avatarURL: result.downloadURL,
         username,
@@ -97,5 +94,9 @@ export class UserService {
     }).catch(error => {
       console.log(error);
     });
+  }
+
+  getUserByUsername(username: string){
+    return this.db.collection('users', ref => ref.where('username', "==", username)).valueChanges();
   }
 }

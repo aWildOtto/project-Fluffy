@@ -5,7 +5,7 @@ export const environment = {
     authDomain: "fluffy-prod.firebaseapp.com",
     databaseURL: "https://fluffy-prod.firebaseio.com",
     projectId: "fluffy-prod",
-    storageBucket: "",
+    storageBucket: "fluffy-prod.appspot.com",
     messagingSenderId: "749460366592"
   }
 };
