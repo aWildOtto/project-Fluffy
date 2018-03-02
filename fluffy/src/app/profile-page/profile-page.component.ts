@@ -3,6 +3,7 @@ import { UserService } from '../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserData } from '../../model/userModel';
 import { Observable } from 'rxjs/Observable';
+import { CatData } from '../../model/catModel';
 
 @Component({
   selector: 'app-profile-page',
@@ -13,6 +14,19 @@ export class ProfilePageComponent implements OnInit {
 
   userData: Observable<{}[]>;
   showAddButton: boolean = false;
+  aCat: CatData = {
+    name: "ruby",
+    breed: "some breed",
+    avatarURL: "https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg",
+    gender: "female"
+  }
+  cats: CatData[] = [
+    this.aCat,
+    this.aCat,
+    this.aCat,
+    this.aCat,
+    this.aCat
+  ];
 
   constructor(
     private userService: UserService,

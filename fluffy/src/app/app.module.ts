@@ -23,6 +23,7 @@ import { AddUserInfoComponent } from './add-user-info/add-user-info.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { CatCardComponent } from './cat-card/cat-card.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { CatService } from '../services/cat.service';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     UserService,
     AngularFireAuth,
     FlashMessagesService,
-    AngularFireStorage
+    AngularFireStorage,
+    CatService
   ],
   bootstrap: [AppComponent]
 })
