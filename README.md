@@ -19,7 +19,7 @@
 
 
 
-Main feature:
+### Main feature:
 
 1) Search cats for adoption
   - advanced search by cat breed, age, and gender
