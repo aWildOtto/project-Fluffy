@@ -9,7 +9,7 @@
 
 4) Run ```npm install``` in server folder
 
-5) Follow the format of .env.example file presented in the server folder and create .env file
+5) Follow the format of `.example.env` file presented in the server folder and create a `.env` file
 
 6) Run ```npm run build``` in fluffy folder to build a production version and copy it to the server
 
