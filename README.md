@@ -3,19 +3,13 @@
 ### Setup 
 1) Clone this repository
 
-2) Install and set up Node.js and PostgreSQL 
+2) Install and set up Node.js and Firebase 
 
 3) Follow README.md in fluffy folder to set up front end
 
-4) Run ```npm install``` in server folder
+4) Run `ng serve --open` in fluffy folder to serve the front end
 
-5) Follow the format of `.example.env` file presented in the server folder and create a `.env` file
-
-6) Run ```npm run build``` in fluffy folder to build a production version and copy it to the server
-
-7) After building the project, run the server by running ```npm start``` in the server folder
-
-8) Go to localhost:8080 to see the production version
+5) Backend is on Firebase now.
 
 
 
