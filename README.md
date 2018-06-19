@@ -1,31 +1,25 @@
 # Untitled Cat website
 
 ### Setup 
-1) Clone this repo
+1) Clone this repository
 
-2) Install and setup nodejs and postgreSQL 
+2) Install and set up Node.js and Firebase 
 
 3) Follow README.md in fluffy folder to set up front end
 
-4) In server folder run ```npm install```
+4) Run `ng serve --open` in fluffy folder to serve the front end
 
-5) create a .env file following the format of .example.env files present in the server folder.
-
-6) run ```npm run build``` in fluffy folder to build a production version and copy to the server
-
-7) after building the project you can run the server by running ```npm start``` in the server folder
-
-8) Go to localhost:8080 to see the production version
+5) Backend is on Firebase now.
 
 
 
-Main feature:
+### Main features
 
 1) Search cats for adoption
-  - search by cat breed, age, gender
-2) social interaction between cat owners
-  - post cat pictures
-  - owner real-time chat 
-  - cat events organizer
-3) cat e-comerce 
+  - advanced search by cat breed, age, and gender
+2) Social interaction between cat owners
+  - post and share cat pictures
+  - real-time chat with cat owners
+  - organize cat events
+3) Cat e-commerce 
   
