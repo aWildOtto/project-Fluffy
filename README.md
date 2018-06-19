@@ -3,11 +3,11 @@
 ### Setup 
 1) Clone this repository
 
-2) Install and set up Node.js and Firebase 
+2) Install and set up Node.js and run `npm install -g @angular/cli` 
 
 3) Follow README.md in fluffy folder to set up front end
 
-4) Run `ng serve --open` in fluffy folder to serve the front end
+4) Run `ng serve --open`(optional "--open" is to open the website automatically) in fluffy folder to serve the front end
 
 5) Backend is on Firebase now.
 
