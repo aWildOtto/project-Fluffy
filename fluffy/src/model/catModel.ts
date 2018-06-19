@@ -4,4 +4,5 @@ export interface CatData {
     status?: string;
     gender: string;
     name: string;
+    catID: number;
 }

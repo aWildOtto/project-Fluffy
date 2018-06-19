@@ -17,8 +17,10 @@ export class ProfilePageComponent implements OnInit {
   aCat: CatData = {
     name: "ruby",
     breed: "some breed",
-    avatarURL: "https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg",
-    gender: "female"
+    avatarURL: "https://firebasestorage.googleapis.com/v0/b/fluffy-fb413.appspot.com/o/IMG_5693.JPG?alt=media&token=b302fd6b-fae1-4c51-841c-354b511b83d8",
+    gender: "female",
+    status: "open for adoption",
+    catID: 1
   }
   cats: CatData[] = [
     this.aCat,
@@ -27,6 +29,7 @@ export class ProfilePageComponent implements OnInit {
     this.aCat,
     this.aCat
   ];
+  selectedCat: CatData;
 
   constructor(
     private userService: UserService,
@@ -36,9 +39,16 @@ export class ProfilePageComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
+      this.route.queryParams.subscribe(queryParams=>{
+        if(queryParams['cat']){
+          this.selectedCat = this.aCat;
+        } else{
+          this.selectedCat = null;
+        }
+      })
       this.userData = this.userService.getUserByUsername(params['id']);
       this.userData.subscribe(data => {
-        console.log(data);
+        // console.log(data);
         if(data.length < 1){
           this.router.navigate(['/404']);
         }
@@ -57,5 +67,8 @@ export class ProfilePageComponent implements OnInit {
     });
   }
 
-
+  addCatPopup(){
+    console.log("add cat clicked");
+    
+  }
 }

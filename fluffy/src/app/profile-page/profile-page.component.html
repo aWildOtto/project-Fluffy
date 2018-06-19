@@ -14,7 +14,7 @@
     </div>
   </div>
   <div id="mobile-cat-list" class="d-sm-none row flex-row flex-nowrap bg-primary">
-    <a *ngIf="showAddButton" class="col-3">
+    <a (click)="addCatPopup()" *ngIf="showAddButton" class="col-3">
       <img src="../../assets/add-button.png" alt="" width="50px" height="50px">
     </a>
     <cat-card *ngFor="let cat of cats" [cat]="cat"></cat-card>
@@ -22,14 +22,16 @@
   <div class="row">
     <div id="desktop-cat-list" class="col-sm-3 d-none d-sm-block bd-sidebar bg-primary">
       <div  *ngIf="showAddButton" class="col">
-        <a >
+        <a (click)="addCatPopup()">
           <img src="../../assets/add-button.png" alt="" width="50px" height="50px">
         </a>
       </div>
-      <cat-card *ngFor="let cat of cats" [cat]="cat"></cat-card>
+      <cat-card *ngFor="let cat of cats" [cat]="cat" [routerLink]="[]" [queryParams]="{cat: cat.catID}"></cat-card>
     </div>
-    <div class="col-sm-9 pl-md-5 bg-success">
-      cat detail
+    <div *ngIf="selectedCat" class="col-sm-9 pl-md-5 bg-success">
+      <p>{{selectedCat.name}}</p>
+      <p>{{selectedCat.breed}}</p>
+      <p>{{selectedCat.status}}</p>
     </div>
   </div>
 </div>
